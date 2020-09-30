@@ -1,0 +1,50 @@
+#:kivy 1.10.1
+#: import SnakeGame SnakeGame
+
+<Tail>
+    size: SnakeGame.scl, SnakeGame.scl
+    canvas:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+
+
+<Snake>:
+    size: SnakeGame.scl, SnakeGame.scl
+    canvas:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+
+<Food>:
+    size: SnakeGame.scl, SnakeGame.scl
+    canvas:
+        Color:
+            rgba: 1, 0, 0, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<SnakeGame>:
+    snake: snake
+    food: food
+    score: score
+
+    Snake:
+        id: snake
+        center: self.parent.center
+
+    Food:
+        id: food
+        center: self.changeLocation()
+
+    Label:
+        id: score
+        text: "0"
+        font_size: 40
+        pos: [root.size[0]/2, root.size[1]-100]
+
+
+
