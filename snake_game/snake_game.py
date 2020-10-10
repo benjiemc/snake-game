@@ -1,3 +1,5 @@
+# !/usr/bin/env python
+
 from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.properties import NumericProperty, ReferenceListProperty, ObjectProperty, ListProperty
@@ -13,11 +15,11 @@ def distance(a, b):
     return np.sqrt(np.power(b[0]-a[0], 2) + np.power(b[1]-a[1], 2))
 
 
-scl = 50
+SCALE = 50
 
 
 class Snake(Widget):
-    velocity = [1*scl, 0]
+    velocity = [1*SCALE, 0]
     snakeTails = []
     snakePos = []
     isDead = False
@@ -36,12 +38,12 @@ class Snake(Widget):
         w, h = Window.size
         x, y = move
 
-        if np.abs(x-0) < scl or np.abs(x-w) < scl or np.abs(y-0) < scl or np.abs(y-h) < scl/2:
+        if np.abs(x-0) < SCALE or np.abs(x-w) < SCALE or np.abs(y-0) < SCALE or np.abs(y-h) < SCALE/2:
             self.dead()
             return
 
         for blockPositions in self.snakePos:
-            if distance(move, blockPositions) < scl/2:
+            if distance(move, blockPositions) < SCALE/2:
                 self.dead()
                 break
 
@@ -84,7 +86,8 @@ class Food(Widget):
 
     def changeLocation(self):
         wd, hg = Window.size
-        location = [random.randrange(0+50, wd-50, scl), random.randrange(0+50, hg-50, scl)]
+        location = [random.randrange(0+50, wd-50, SCALE),
+                    random.randrange(0+50, hg-50, SCALE)]
         self.pos = location
         return location
 
@@ -104,14 +107,14 @@ class SnakeGame(Widget):
         self._keyboard = None
 
     def _on_keyboard_down(self, keyboard, keycode, text, modifiers):
-        if keycode[1] == 'up' and self.snake.velocity != [0,1*scl] and self.snake.velocity != [0, -1*scl]:
-            self.snake.move([0,1*scl])
-        elif keycode[1] == 'down' and self.snake.velocity != [0, -1*scl] and self.snake.velocity != [0, 1*scl]:
-            self.snake.move([0, -1*scl])
-        elif keycode[1] == 'right' and self.snake.velocity != [1*scl, 0] and self.snake.velocity != [-1*scl, 0]:
-            self.snake.move([1*scl, 0*scl])
-        elif keycode[1] == 'left' and self.snake.velocity != [-1*scl, 0]and self.snake.velocity != [1*scl, 0]:
-            self.snake.move([-1*scl, 0])
+        if keycode[1] == 'up' and self.snake.velocity != [0,1*SCALE] and self.snake.velocity != [0, -1*SCALE]:
+            self.snake.move([0,1*SCALE])
+        elif keycode[1] == 'down' and self.snake.velocity != [0, -1*SCALE] and self.snake.velocity != [0, 1*SCALE]:
+            self.snake.move([0, -1*SCALE])
+        elif keycode[1] == 'right' and self.snake.velocity != [1*SCALE, 0] and self.snake.velocity != [-1*SCALE, 0]:
+            self.snake.move([1*SCALE, 0*SCALE])
+        elif keycode[1] == 'left' and self.snake.velocity != [-1*SCALE, 0] and self.snake.velocity != [1*SCALE, 0]:
+            self.snake.move([-1*SCALE, 0])
 
         return True
 
@@ -123,7 +126,7 @@ class SnakeGame(Widget):
         self.snake.move(self.snake.velocity)
         self.snake.moveTail()
 
-        if distance(self.snake.pos, self.food.pos) < scl:
+        if distance(self.snake.pos, self.food.pos) < SCALE:
             self.food.changeLocation()
             self.snake.eat()
             self.score.text = str(int(self.score.text) + 1)
