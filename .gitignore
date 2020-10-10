@@ -1,6 +1,8 @@
 # Development environment
 .idea
+.vscode/
 
 # python files
 **/__pycache__
 venv
+**.py[co]

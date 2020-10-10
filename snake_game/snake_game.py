@@ -135,6 +135,8 @@ class SnakeApp(App):
         Clock.schedule_interval(game.update, 1/8)
         return game
 
+def start_game():
+    SnakeApp().run()
 
 if __name__ == "__main__":
-    SnakeApp().run()
+    start_game()
