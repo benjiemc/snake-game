@@ -1,6 +1,7 @@
 # Development environment
 .idea
 .vscode/
+*.egg*
 
 # python files
 **/__pycache__
