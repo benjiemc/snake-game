@@ -1,8 +1,8 @@
 #:kivy 1.10.1
-#: import SnakeGame SnakeGame
+#: import snake_game snake_game.snake_game
 
 <Tail>
-    size: SnakeGame.SCALE, SnakeGame.SCALE
+    size: snake_game.SCALE, snake_game.SCALE
     canvas:
         Rectangle:
             pos: self.pos
@@ -11,7 +11,7 @@
 
 
 <Snake>:
-    size: SnakeGame.SCALE, SnakeGame.SCALE
+    size: snake_game.SCALE, snake_game.SCALE
     canvas:
         Rectangle:
             pos: self.pos
@@ -19,7 +19,7 @@
 
 
 <Food>:
-    size: SnakeGame.SCALE, SnakeGame.SCALE
+    size: snake_game.SCALE, snake_game.SCALE
     canvas:
         Color:
             rgba: 1, 0, 0, 1
@@ -45,6 +45,3 @@
         text: "0"
         font_size: 40
         pos: [root.size[0]/2, root.size[1]-100]
-
-
-
