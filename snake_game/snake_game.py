@@ -1,10 +1,9 @@
 from kivy.app import App
 from kivy.uix.widget import Widget
-from kivy.properties import NumericProperty, ReferenceListProperty, ObjectProperty, ListProperty
+from kivy.properties import ObjectProperty
 from kivy.vector import Vector
 from kivy.core.window import Window
 from kivy.clock import Clock
-from kivy.graphics import Color, Rectangle
 import numpy as np
 import random
 
@@ -22,7 +21,6 @@ class Snake(Widget):
     snakePos = []
     isDead = False
     prevPos = [0, 0]
-
 
     def move(self, direction):
         self.prevPos = self.pos
@@ -48,8 +46,6 @@ class Snake(Widget):
         else:
             self.pos = move
 
-
-
     def moveTail(self):
         if self.isDead:
             for tail in self.snakeTails:
@@ -59,7 +55,7 @@ class Snake(Widget):
             return
 
         for position, tail in zip(self.snakePos, self.snakeTails):
-                tail.pos = position
+            tail.pos = position
 
     def eat(self):
         tail = Tail(self.prevPos)
@@ -105,14 +101,14 @@ class SnakeGame(Widget):
         self._keyboard = None
 
     def _on_keyboard_down(self, keyboard, keycode, text, modifiers):
-        if keycode[1] == 'up' and self.snake.velocity != [0,1*SCALE] and self.snake.velocity != [0, -1*SCALE]:
-            self.snake.move([0,1*SCALE])
-        elif keycode[1] == 'down' and self.snake.velocity != [0, -1*SCALE] and self.snake.velocity != [0, 1*SCALE]:
-            self.snake.move([0, -1*SCALE])
-        elif keycode[1] == 'right' and self.snake.velocity != [1*SCALE, 0] and self.snake.velocity != [-1*SCALE, 0]:
-            self.snake.move([1*SCALE, 0*SCALE])
-        elif keycode[1] == 'left' and self.snake.velocity != [-1*SCALE, 0] and self.snake.velocity != [1*SCALE, 0]:
-            self.snake.move([-1*SCALE, 0])
+        if keycode[1] == 'up' and self.snake.velocity != [0, 1 * SCALE] and self.snake.velocity != [0, -1 * SCALE]:
+            self.snake.move([0, 1 * SCALE])
+        elif keycode[1] == 'down' and self.snake.velocity != [0, -1*SCALE] and self.snake.velocity != [0, 1 * SCALE]:
+            self.snake.move([0, -1 * SCALE])
+        elif keycode[1] == 'right' and self.snake.velocity != [1*SCALE, 0] and self.snake.velocity != [-1 * SCALE, 0]:
+            self.snake.move([1 * SCALE, 0 * SCALE])
+        elif keycode[1] == 'left' and self.snake.velocity != [-1 * SCALE, 0] and self.snake.velocity != [1 * SCALE, 0]:
+            self.snake.move([-1 * SCALE, 0])
 
         return True
 
@@ -136,8 +132,6 @@ class SnakeApp(App):
         Clock.schedule_interval(game.update, 1/8)
         return game
 
-def start_game():
-    SnakeApp().run()
 
 if __name__ == "__main__":
-    start_game()
+    SnakeApp().run()
