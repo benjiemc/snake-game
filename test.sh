@@ -11,7 +11,7 @@ pip install -e .[develop]
 # pytest || error=1
 
 if [[ $error -ne 1 ]]; then
-    flake8 snake_game  || true
+    pylint snake_game  || true
 fi
 
 exit $error
